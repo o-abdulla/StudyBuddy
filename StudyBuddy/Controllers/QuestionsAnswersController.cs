@@ -1,0 +1,55 @@
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using StudyBuddy.Models;
+
+namespace StudyBuddy.Controllers
+{
+    [Route("[controller]")]
+    [ApiController]
+    public class QuestionsAnswersController : ControllerBase
+    {
+        StudyBuddyDBContext dBContext = new StudyBuddyDBContext();
+
+        // GET: QuestionsAnswers
+        [HttpGet]
+        public List<QuestionsAndAnswer> GetQuestions()
+        {
+            return dBContext.QuestionsAndAnswers.ToList();
+        }
+
+        // GET: QuestionsAnswers/5
+        [HttpGet("{id}")]
+        public QuestionsAndAnswer GetById(int id)
+        {
+            return dBContext.QuestionsAndAnswers.Find(id);
+        }
+
+        // POST: QuestionsAnswers
+        [HttpPost]
+        public QuestionsAndAnswer PostQuestion([FromBody] QuestionsAndAnswer question)
+        {
+            dBContext.QuestionsAndAnswers.Add(question);
+            dBContext.SaveChanges();
+            return question;
+        }
+
+        // PUT: QuestionsAnswers/5
+        [HttpPut("{id}")]
+        public QuestionsAndAnswer PutQuestion(int id, [FromBody] QuestionsAndAnswer question)
+        {
+            dBContext.QuestionsAndAnswers.Update(question);
+            dBContext.SaveChanges();
+            return question;
+        }
+
+        // DELETE: QuestionsAnswers/5
+        [HttpDelete("{id}")]
+        public QuestionsAndAnswer DeleteById(int id)
+        {
+            QuestionsAndAnswer deleted = dBContext.QuestionsAndAnswers.Find(id);
+            dBContext.QuestionsAndAnswers.Remove(deleted);
+            dBContext.SaveChanges();
+            return deleted;
+        }
+    }
+}
