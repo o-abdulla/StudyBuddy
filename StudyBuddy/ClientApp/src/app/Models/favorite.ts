@@ -1,5 +1,5 @@
 export interface Favorite {
     favoriteId: number;
-    userId: number;
+    userId: string;
     questionId: number;
 }

@@ -1,0 +1,43 @@
+/* Add the following styles to your external CSS file */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+tr {
+    border-bottom: 1px solid #ddd;
+}
+
+td {
+    padding: 10px;
+    text-align: left;
+}
+
+button {
+    cursor: pointer;
+    padding: 8px 12px;
+    margin-right: 5px;
+    background-color: #007bff; /* Blue background color */
+    color: #fff; /* White text color */
+    border: 1px solid #0056b3; /* Darker blue border color */
+}
+
+button.delete {
+    background-color: #dc3545; /* Red background color */
+    border-color: #dc3545; /* Red border color */
+    color: #fff; /* White text color */
+}
+
+button.delete:hover {
+    background-color: #000000; /* Darker red background color */
+    border-color: #bd2130; /* Darker red border color */
+}
+
+.answer {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #f8f9fa; /* Light gray background color */
+    border: 1px solid #ddd;
+}

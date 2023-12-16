@@ -1,1 +1,23 @@
-<p>questions-and-answers works!</p>
+<h1>Questions and Answers</h1>
+
+<br>
+
+<table>
+    <tr *ngFor="let q of QuestionsAnswersList">
+        <td>{{ q.questions }}</td>
+        <br>
+        <div *ngIf="q.toggleAnswer">
+            {{ q.answers }}
+        </div>
+        <td>
+            <button class="btn btn-outline-dark" (click)="showAnswer(q)">
+                {{ q.toggleAnswer ? 'Hide Answer' : 'Show Answer' }}
+            </button>
+        </td>
+        <td>
+        <button class="btn btn-outline-dark delete" (click)="DeleteQuestion(q.questionId)">
+        Delete
+        </button>
+        </td>
+    </tr>
+</table>

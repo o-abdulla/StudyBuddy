@@ -3,7 +3,7 @@
     class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3"
   >
     <div class="container">
-      <a class="navbar-brand" [routerLink]="['/']">StudyBuddy</a>
+      <a class="navbar-brand" [routerLink]="['/questions-and-answers']">StudyBuddy</a>
       <button
         class="navbar-toggler"
         type="button"
@@ -25,18 +25,31 @@
             [routerLinkActive]="['link-active']"
             [routerLinkActiveOptions]="{ exact: true }"
           >
-            <a class="nav-link text-dark" [routerLink]="['/']">Home</a>
+            <a class="nav-link text-dark" [routerLink]="['/questions-and-answers']">Home</a>
           </li>
           <li class="nav-item" [routerLinkActive]="['link-active']">
             <a class="nav-link text-dark" [routerLink]="['/favorite-list']"
               >Favorites</a
             >
           </li>
-          <!-- <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/fetch-data']"
-              >Fetch data</a
+          <!-- Provided as an li to slot nicely in nav-menu. 
+            Can remove the li for your own design if needed -->
+          <li class="nav-item">
+            <!-- Below is the custom login component. -->
+            <asl-google-signin-button
+              *ngIf="!loggedIn"
+              type="icon"
+              size="medium"
+            ></asl-google-signin-button>
+            <!-- Calls the log out method from the notes -->
+            <button
+              class="btn btn-outline-dark"
+              *ngIf="loggedIn"
+              (click)="signOut()"
             >
-          </li> -->
+              Sign Out
+            </button>
+          </li>
         </ul>
       </div>
     </div>

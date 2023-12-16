@@ -1,3 +1,4 @@
+import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
 import { Component } from '@angular/core';
 import { Favorite } from 'src/app/Models/favorite';
 import { QuestionsAndAnswers } from 'src/app/Models/questions-and-answers';
@@ -12,14 +13,26 @@ export class QuestionsAndAnswersComponent {
   QuestionsAnswersList: QuestionsAndAnswers[] = [];
   FavoritesList: Favorite[] = [];
   Question: QuestionsAndAnswers = {} as QuestionsAndAnswers;
+  user: SocialUser = {} as SocialUser;
+  loggedIn: boolean = false;
+  toggleAnswer: boolean = false;
 
-  constructor(private _questionsAnswersService: QuestionsAnswersService) { }
+  constructor(private _questionsAnswersService: QuestionsAnswersService, private authService: SocialAuthService) { }
 
   ngOnInit(): void {
-    this._questionsAnswersService.GetQuestions().subscribe(response => {
+    this.authService.authState.subscribe((user) => {
+      this.user = user;
+      this.loggedIn = (user != null);
+    });
+    this.ShowQuestions();
+  }
+
+  ShowQuestions():QuestionsAndAnswers[]{
+    this._questionsAnswersService.GetQuestions().subscribe((response:QuestionsAndAnswers[]) => {
       console.log(response)
       this.QuestionsAnswersList = response;
     });
+    return this.QuestionsAnswersList;
   }
 
   newQuestion(addQuestion: QuestionsAndAnswers) {
@@ -32,7 +45,7 @@ export class QuestionsAndAnswersComponent {
   AddFavorite(questions: string, newFavorite: QuestionsAndAnswers) {
     let favorite: Favorite = {} as Favorite;
     favorite.questionId = newFavorite.questionId;
-    // fix this method call
+    favorite.userId = this.user.id;
     this._questionsAnswersService.AddFavorite(favorite).subscribe(response => {
       console.log(response);
       this.FavoritesList.push(response);
@@ -47,4 +60,13 @@ export class QuestionsAndAnswersComponent {
       console.log(response);
     });
   }
+
+  // showAnswer(): void {
+  //   this.toggleAnswer = !this.toggleAnswer;
+  // }
+
+  showAnswer(question: any): void {
+    question.toggleAnswer = !question.toggleAnswer;
+}
+
 }

@@ -32,19 +32,13 @@ namespace StudyBuddy.Models
         {
             modelBuilder.Entity<Favorite>(entity =>
             {
-                entity.HasIndex(e => new { e.UserId, e.QuestionId }, "UC_UserQuestion")
-                    .IsUnique();
-
                 entity.Property(e => e.FavoriteId).HasColumnName("FavoriteID");
 
                 entity.Property(e => e.QuestionId).HasColumnName("QuestionID");
 
-                entity.Property(e => e.UserId).HasColumnName("UserID");
-
-                entity.HasOne(d => d.Question)
-                    .WithMany(p => p.Favorites)
-                    .HasForeignKey(d => d.QuestionId)
-                    .HasConstraintName("FK__Favorites__Quest__4CA06362");
+                entity.Property(e => e.UserId)
+                    .HasMaxLength(3000)
+                    .HasColumnName("UserID");
             });
 
             modelBuilder.Entity<QuestionsAndAnswer>(entity =>
