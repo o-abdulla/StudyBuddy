@@ -24,6 +24,12 @@ button {
     border: 1px solid #0056b3; /* Darker blue border color */
 }
 
+button.ans:hover {
+    background-color: #4ee658; /* Darker blue background color */
+    border-color: #4ee658; /* Darker blue border color */
+    color: black;
+}
+
 button.delete {
     background-color: #dc3545; /* Red background color */
     border-color: #dc3545; /* Red border color */
@@ -41,3 +47,5 @@ button.delete:hover {
     background-color: #f8f9fa; /* Light gray background color */
     border: 1px solid #ddd;
 }
+
+

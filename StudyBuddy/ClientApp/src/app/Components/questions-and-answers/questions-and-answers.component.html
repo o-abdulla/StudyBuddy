@@ -1,4 +1,4 @@
-<h1>Questions and Answers</h1>
+<h1>C# / SQL / Angular Questions</h1>
 
 <br>
 
@@ -10,9 +10,10 @@
             {{ q.answers }}
         </div>
         <td>
-            <button class="btn btn-outline-dark" (click)="showAnswer(q)">
+            <button class="btn btn-outline-dark ans" (click)="showAnswer(q)">
                 {{ q.toggleAnswer ? 'Hide Answer' : 'Show Answer' }}
             </button>
+            <!-- <button *ngIf="loggedIn" (click)="AddFavorite(googleId, q)">Add to Favorites</button> -->
         </td>
         <td>
         <button class="btn btn-outline-dark delete" (click)="DeleteQuestion(q.questionId)">
@@ -21,3 +22,13 @@
         </td>
     </tr>
 </table>
+
+<br>
+
+<form>
+<h4>Add a Question?</h4>
+    <input type="text" [(ngModel)]="Question.questions" name="questions" placeholder="Question">
+    <br>
+    <input type="text" [(ngModel)]="Question.answers" name="answers" placeholder="Answer"> &nbsp; 
+    <button class="btn btn-outline-dark" (click)="newQuestion(Question)">Add Question</button>
+</form>

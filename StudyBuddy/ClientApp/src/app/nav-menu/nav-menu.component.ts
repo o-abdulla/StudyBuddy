@@ -15,7 +15,7 @@ export class NavMenuComponent {
 
   ngOnInit(): void {
     //subscribe will activate once logged in
-    this.authService.authState.subscribe((user) => {
+    this.authService.authState.subscribe((user: SocialUser) => {
         this.user = user;
         this.loggedIn = (user != null);
     });

@@ -16,11 +16,12 @@ export class QuestionsAndAnswersComponent {
   user: SocialUser = {} as SocialUser;
   loggedIn: boolean = false;
   toggleAnswer: boolean = false;
+  // googleId: string = "";
 
   constructor(private _questionsAnswersService: QuestionsAnswersService, private authService: SocialAuthService) { }
 
   ngOnInit(): void {
-    this.authService.authState.subscribe((user) => {
+    this.authService.authState.subscribe((user: SocialUser) => {
       this.user = user;
       this.loggedIn = (user != null);
     });
@@ -39,13 +40,15 @@ export class QuestionsAndAnswersComponent {
     this._questionsAnswersService.PostQuestion(addQuestion).subscribe(response => {
       console.log(response);
       this.QuestionsAnswersList.push(response);
+      addQuestion.questions = ""; // Clear the input fields
+      addQuestion.answers = ""; // Clear the input fields
     });
   }
 
-  AddFavorite(questions: string, newFavorite: QuestionsAndAnswers) {
+  AddFavorite(newFavorite: QuestionsAndAnswers) {
     let favorite: Favorite = {} as Favorite;
     favorite.questionId = newFavorite.questionId;
-    favorite.userId = this.user.id;
+    favorite.userId = this.user.id; // Assign the user's Google ID
     this._questionsAnswersService.AddFavorite(favorite).subscribe(response => {
       console.log(response);
       this.FavoritesList.push(response);

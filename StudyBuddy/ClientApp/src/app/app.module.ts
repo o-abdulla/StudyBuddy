@@ -45,7 +45,7 @@ import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from 
           {
             id: GoogleLoginProvider.PROVIDER_ID,
             provider: new GoogleLoginProvider(
-              'clientId'
+              '835733185842-uaj9o82p3m7h0ccarv2dtoon07h35fgo'
             )
           }
         ]
