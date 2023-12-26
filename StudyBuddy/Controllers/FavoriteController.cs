@@ -11,10 +11,10 @@ namespace StudyBuddy.Controllers
         StudyBuddyDBContext dBContext = new StudyBuddyDBContext();
 
         // GET: Favorite
-        [HttpGet]
-        public List<Favorite> GetFavorites()
+        [HttpGet("{googleId}")]
+        public List<Favorite> GetFavorites(string googleId)
         {
-            return dBContext.Favorites.ToList();
+            return dBContext.Favorites.Where(g => g.UserId == googleId).ToList();
         }
 
         // GET: Favorite/5

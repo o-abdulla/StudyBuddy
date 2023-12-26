@@ -35,8 +35,8 @@ export class QuestionsAnswersService {
 
   // Favorites
 
-  GetFavorites():Observable<Favorite[]>{
-    return this.http.get<Favorite[]>(`${this.baseUrl}Favorite`);
+  GetFavorites(googleId:string):Observable<Favorite[]>{
+    return this.http.get<Favorite[]>(`${this.baseUrl}Favorite/${googleId}`);
   }
 
   GetFavoriteById(id:number):Observable<Favorite>{

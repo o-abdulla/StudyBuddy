@@ -47,13 +47,28 @@ export class QuestionsAndAnswersComponent {
 
   AddFavorite(newFavorite: QuestionsAndAnswers) {
     let favorite: Favorite = {} as Favorite;
-    favorite.questionId = newFavorite.questionId;
+    favorite.questionId = newFavorite.questionId
+    //favorite.answerId = newFavorite.questionId; // still getting null for answerId in sql table
     favorite.userId = this.user.id; // Assign the user's Google ID
     this._questionsAnswersService.AddFavorite(favorite).subscribe(response => {
       console.log(response);
       this.FavoritesList.push(response);
     });
   }
+
+  // chatGPT method (maybe rework sql table)
+
+  // AddFavorite(newFavorite: QuestionsAndAnswers) {
+  //   let favorite: Favorite = {} as Favorite;
+  //   favorite.questionId = newFavorite.questionId;
+  //   favorite.answerId = newFavorite.answerId; // Assuming there's a property like answerId in QuestionsAndAnswers
+  //   favorite.userId = this.user.id; // Assign the user's Google ID
+  //   this._questionsAnswersService.AddFavorite(favorite).subscribe(response => {
+  //     console.log(response);
+  //     this.FavoritesList.push(response);
+  //   });
+  // }
+  
 
   DeleteQuestion(id: number): void {
     let target: number = this.QuestionsAnswersList.findIndex((Question) => Question.questionId == id);

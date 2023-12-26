@@ -1,1 +1,16 @@
-<p>favorite-list works!</p>
+<h1>Favorites</h1>
+
+<br>
+
+<h4>Hey {{user.firstName}} </h4>
+
+<div>
+    <table>
+        <tr *ngFor="let f of FavoritesListResult">
+            <td>{{ f.userId }}</td>
+            <td *ngFor="let q of QuestionsAnswersList">
+                <div *ngIf="f.questionId == q.questionId">{{ q.questions }}</div>
+            </td>
+        </tr>
+    </table>
+</div>

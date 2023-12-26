@@ -47,6 +47,12 @@ namespace StudyBuddy.Controllers
         public QuestionsAndAnswer DeleteById(int id)
         {
             QuestionsAndAnswer deleted = dBContext.QuestionsAndAnswers.Find(id);
+            // Delete related favorites in the Favorites table
+            if(deleted != null)
+            {
+                IEnumerable<Favorite> relatedFavorites = dBContext.Favorites.Where(f => f.QuestionId == id);
+                dBContext.Favorites.RemoveRange(relatedFavorites);
+            }
             dBContext.QuestionsAndAnswers.Remove(deleted);
             dBContext.SaveChanges();
             return deleted;

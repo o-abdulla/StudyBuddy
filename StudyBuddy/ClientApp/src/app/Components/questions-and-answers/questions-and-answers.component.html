@@ -4,24 +4,29 @@
 
 <table>
     <tr *ngFor="let q of QuestionsAnswersList">
-        <td>{{ q.questions }}</td>
-        <br>
-        <div *ngIf="q.toggleAnswer">
-            {{ q.answers }}
-        </div>
-        <td>
-            <button class="btn btn-outline-dark ans" (click)="showAnswer(q)">
-                {{ q.toggleAnswer ? 'Hide Answer' : 'Show Answer' }}
-            </button>
-            <!-- <button *ngIf="loggedIn" (click)="AddFavorite(googleId, q)">Add to Favorites</button> -->
-        </td>
-        <td>
-        <button class="btn btn-outline-dark delete" (click)="DeleteQuestion(q.questionId)">
-        Delete
+      <td>{{ q.questions }}</td>
+      <br>
+      <div *ngIf="q.toggleAnswer">
+        {{ q.answers }}
+      </div>
+      <td>
+        <button class="btn btn-outline-dark ans" (click)="showAnswer(q)">
+          {{ q.toggleAnswer ? 'Hide Answer' : 'Show Answer' }}
         </button>
-        </td>
+      </td>
+      <td>
+        <button class="btn btn-outline-dark" (click)="AddFavorite(q)">
+          Add to Favorites
+        </button>
+      </td>
+      <td>
+        <button class="btn btn-outline-dark delete" (click)="DeleteQuestion(q.questionId)">
+          Delete
+        </button>
+      </td>
     </tr>
-</table>
+  </table>
+  
 
 <br>
 
