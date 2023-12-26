@@ -41,6 +41,7 @@ namespace StudyBuddy.Controllers
             {
                 favorite.UserId = newFav.UserId;
                 favorite.QuestionId = newFav.QuestionId;
+                favorite.AnswerId = newFav.AnswerId;
 
                 dBContext.Favorites.Add(favorite);
                 dBContext.SaveChanges();
