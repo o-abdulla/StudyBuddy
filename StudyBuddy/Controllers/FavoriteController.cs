@@ -18,11 +18,11 @@ namespace StudyBuddy.Controllers
         }
 
         // GET: Favorite/5
-        [HttpGet("{id}")]
-        public Favorite GetFavoriteById(int id)
-        {
-            return dBContext.Favorites.Find(id);
-        }
+        //[HttpGet("{id}")]
+        //public Favorite GetFavoriteById(int id)
+        //{
+        //    return dBContext.Favorites.Find(id);
+        //}
 
         // POST: Favorite
         [HttpPost]

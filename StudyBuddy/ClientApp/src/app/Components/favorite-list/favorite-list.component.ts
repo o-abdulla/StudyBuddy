@@ -23,16 +23,25 @@ export class FavoriteListComponent {
     this.authService.authState.subscribe((user: SocialUser) => {
       this.user = user;
       this.loggedIn = (user != null);
+      this.ShowQuestions();
       this.ShowFavorites(this.user.id);
     });
   }
 
-  ShowFavorites(googleId:string): Favorite[] {
+  ShowQuestions():QuestionsAndAnswers[]{
+    this._questionsAnswersService.GetQuestions().subscribe((response:QuestionsAndAnswers[]) => {
+      console.log(response)
+      this.QuestionsAnswersList = response;
+    });
+    return this.QuestionsAnswersList;
+  }
+
+  ShowFavorites(googleId:string): void {
     this._questionsAnswersService.GetFavorites(googleId).subscribe((response: Favorite[]) => {
-      // console.log(response);
+      console.log(response);
       this.FavoritesListResult = response;
     });
-    return this.FavoritesListResult;
+    // return this.FavoritesListResult;
   }
 
   deleteFavorite(id: number) {
