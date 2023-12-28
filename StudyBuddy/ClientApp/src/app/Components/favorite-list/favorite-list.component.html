@@ -2,15 +2,22 @@
 
 <br>
 
-<h4>Hey {{user.firstName}} </h4>
+<h4 *ngIf="loggedIn == true">Hey {{user.firstName}}</h4>
+
+<br>
 
 <div>
     <table>
         <tr *ngFor="let f of FavoritesListResult">
-            <td>{{ f.userId }}</td>
-            <td *ngFor="let q of QuestionsAnswersList">
-                <div *ngIf="f.questionId == q.questionId">{{ q.questions }}</div>
+            <td>
+                <div *ngFor="let q of QuestionsAnswersList">
+                    <div *ngIf="f.questionId == q.questionId">
+                        <p>{{ q.questions }}</p>
+                        <p>{{ q.answers }}</p>
+                    </div>
+                </div>
             </td>
         </tr>
     </table>
 </div>
+

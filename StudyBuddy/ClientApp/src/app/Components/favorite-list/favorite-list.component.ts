@@ -15,12 +15,14 @@ export class FavoriteListComponent {
   user: SocialUser = {} as SocialUser;
   favoriteQuestions: Favorite[] = {} as Favorite[];
   QuestionsAnswersList: QuestionsAndAnswers[] = [];
+  loggedIn: boolean = false;
 
   constructor(private _questionsAnswersService: QuestionsAnswersService, private authService: SocialAuthService) { }
 
   ngOnInit(): void {
     this.authService.authState.subscribe((user: SocialUser) => {
       this.user = user;
+      this.loggedIn = (user != null);
       this.ShowFavorites(this.user.id);
     });
   }

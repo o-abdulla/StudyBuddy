@@ -45,11 +45,11 @@ export class QuestionsAndAnswersComponent {
     });
   }
 
-  AddFavorite(newFavorite: QuestionsAndAnswers) {
+  AddFavorite(newFavorite: QuestionsAndAnswers, googleId: string) {
     let favorite: Favorite = {} as Favorite;
     favorite.questionId = newFavorite.questionId
     favorite.answerId = newFavorite.questionId; // still getting null for answerId in sql table
-    favorite.userId = this.user.id; // Assign the user's Google ID
+    favorite.userId = googleId; // Assign the user's Google ID
     this._questionsAnswersService.AddFavorite(favorite).subscribe(response => {
       console.log(response);
       this.FavoritesList.push(response);
