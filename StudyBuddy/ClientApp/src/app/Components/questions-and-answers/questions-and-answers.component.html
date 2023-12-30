@@ -15,8 +15,8 @@
         </button>
       </td>
       <td>
-        <button class="btn btn-outline-dark" (click)="AddFavorite(q, user.id)">
-          Add to Favorites
+        <button class="btn btn-outline-dark" (click)="toggleFavorite(q, user.id)">
+          {{ isFavorite(q) ? 'Remove from Favorites' : 'Add to Favorites' }}
         </button>
       </td>
       <td>

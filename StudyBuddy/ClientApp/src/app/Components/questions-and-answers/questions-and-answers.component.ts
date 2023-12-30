@@ -24,6 +24,9 @@ export class QuestionsAndAnswersComponent {
     this.authService.authState.subscribe((user: SocialUser) => {
       this.user = user;
       this.loggedIn = (user != null);
+      this.ShowQuestions();
+      this.ShowFavorites(this.user.id);
+      this.FavoritesList = this._questionsAnswersService.ShowFavorites(this.user.id);
     });
     this.ShowQuestions();
   }
@@ -74,17 +77,35 @@ export class QuestionsAndAnswersComponent {
 }
 
 isFavorite(question: QuestionsAndAnswers): boolean {
-  return this.FavoritesList.some(favorite => favorite.questionId === question.questionId);
+  return this.FavoritesList.some(favorite => favorite.questionId === question.questionId
+    && favorite.answerId === question.questionId);
 }
 
-// toggleFavorite(question: QuestionsAndAnswers): void {
-//   let isCurrentlyFavorite = this.isFavorite(question);
+deleteFavorite(id: number, googleId: string) {
+  let target: number = this.FavoritesList.findIndex((question) => question.userId === googleId);
+  this.FavoritesList.splice(target, 1);
 
-//   if (isCurrentlyFavorite) {
-//     this.removeFromFavorites(question);
-//   } else {
-//     this.addToFavorites(question);
-//   }
-// }
+  this._questionsAnswersService.DeleteFavoriteById(id, googleId).subscribe(response => {
+    console.log(response);
+  });
+}
+
+toggleFavorite(question: QuestionsAndAnswers, googleId: string): void {
+  const isCurrentlyFavorite = this.isFavorite(question);
+
+  if (isCurrentlyFavorite) {
+    this.deleteFavorite(question.questionId, googleId);
+  } else {
+    this.AddFavorite(question, googleId);
+  }
+}
+
+ShowFavorites(googleId:string): void {
+  this._questionsAnswersService.GetFavorites(googleId).subscribe((response: Favorite[]) => {
+    console.log(response);
+    this.FavoritesList = response;
+  });
+  // return this.FavoritesListResult;
+}
 
 }

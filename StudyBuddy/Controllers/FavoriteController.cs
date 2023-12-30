@@ -59,13 +59,28 @@ namespace StudyBuddy.Controllers
         }
 
         // DELETE: Favorite/5
-        [HttpDelete("{googleId}")]
-        public Favorite DeleteFavoriteById(string googleId)
+        //[HttpDelete("{googleId}")]
+        //public Favorite DeleteFavoriteById(string googleId)
+        //{
+        //    Favorite deleted = dBContext.Favorites.Find(googleId);
+        //    dBContext.Favorites.Remove(deleted);
+        //    dBContext.SaveChanges();
+        //    return deleted;
+        //}
+
+        [HttpDelete("{questionId}/{userId}")]
+        public IActionResult DeleteFavoriteById(int questionId, string userId)
         {
-            Favorite deleted = dBContext.Favorites.Find(googleId);
-            dBContext.Favorites.Remove(deleted);
-            dBContext.SaveChanges();
-            return deleted;
+            Favorite deleted = dBContext.Favorites.FirstOrDefault(f => f.QuestionId == questionId && f.UserId == userId);
+
+            if (deleted != null)
+            {
+                dBContext.Favorites.Remove(deleted);
+                dBContext.SaveChanges();
+                return Ok(deleted);
+            }
+
+            return NotFound(); // Or you can return a different status code based on your requirements
         }
     }
 }

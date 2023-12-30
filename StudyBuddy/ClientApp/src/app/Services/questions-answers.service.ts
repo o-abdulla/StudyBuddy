@@ -8,6 +8,9 @@ import { Favorite } from '../Models/favorite';
   providedIn: 'root'
 })
 export class QuestionsAnswersService {
+  ShowFavorites(id: string): Favorite[] {
+    throw new Error('Method not implemented.');
+  }
 
   constructor(private http:HttpClient, @Inject('BASE_URL') private baseUrl: string) { }
 
@@ -51,7 +54,12 @@ export class QuestionsAnswersService {
     return this.http.put<Favorite>(`${this.baseUrl}Favorite/${id}`, favorite);
   }
 
-  DeleteFavoriteById(googleId:string):Observable<Favorite>{
-    return this.http.delete<Favorite>(`${this.baseUrl}Favorite/${googleId}`);
+  // DeleteFavoriteById(googleId:string):Observable<Favorite>{
+  //   return this.http.delete<Favorite>(`${this.baseUrl}Favorite/${googleId}`);
+  // }
+
+  DeleteFavoriteById(questionId: number, userId: string): Observable<Favorite> {
+    return this.http.delete<Favorite>(`${this.baseUrl}Favorite/${questionId}/${userId}`);
   }
+  
 }
