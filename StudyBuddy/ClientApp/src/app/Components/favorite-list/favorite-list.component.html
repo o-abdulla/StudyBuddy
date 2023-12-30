@@ -11,13 +11,14 @@
         <tr *ngFor="let f of FavoritesListResult">
             <td>
                 <div *ngFor="let q of QuestionsAnswersList">
-                    <div *ngIf="f.questionId == q.questionId">
-                        <p>{{ q.questions }}</p>
-                        <p>{{ q.answers }}</p>
+                    <div *ngIf="f.questionId == q.questionId" class="favorite-item">
+                        <p class="question">{{ q.questions }}</p>
+                        <p class="answer">{{ q.answers }}</p>
                     </div>
                 </div>
             </td>
         </tr>
     </table>
 </div>
+
 

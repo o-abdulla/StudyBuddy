@@ -44,11 +44,11 @@ export class FavoriteListComponent {
     // return this.FavoritesListResult;
   }
 
-  deleteFavorite(id: number) {
-    let target: number = this.FavoritesListResult.findIndex((question) => question.questionId == id);
+  deleteFavorite(googleId: string) {
+    let target: number = this.FavoritesListResult.findIndex((question) => question.userId == googleId);
     this.FavoritesListResult.splice(target, 1);
 
-    this._questionsAnswersService.DeleteFavoriteById(id).subscribe(response => {
+    this._questionsAnswersService.DeleteFavoriteById(googleId).subscribe(response => {
       console.log(response);
     });
   }

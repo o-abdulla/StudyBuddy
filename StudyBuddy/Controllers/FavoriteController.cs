@@ -59,10 +59,10 @@ namespace StudyBuddy.Controllers
         }
 
         // DELETE: Favorite/5
-        [HttpDelete("{id}")]
-        public Favorite DeleteFavoriteById(int id)
+        [HttpDelete("{googleId}")]
+        public Favorite DeleteFavoriteById(string googleId)
         {
-            Favorite deleted = dBContext.Favorites.Find(id);
+            Favorite deleted = dBContext.Favorites.Find(googleId);
             dBContext.Favorites.Remove(deleted);
             dBContext.SaveChanges();
             return deleted;

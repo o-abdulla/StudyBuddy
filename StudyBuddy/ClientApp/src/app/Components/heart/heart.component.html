@@ -1,0 +1,7 @@
+<!-- Front page -->
+<i class="heart-icon fas fa-heart" id="heart" *ngIf="favoriteCheck && !isOnFavs"></i>
+<i class="heart-icon fas fa-heart" id="heartNotLike" *ngIf="!favoriteCheck && !isOnFavs"></i>
+
+<!-- Fav list -->
+<i class="heart-icon fas fa-heart" id="heart" *ngIf="favoriteCheck && isOnFavs"></i>
+<i class="heart-icon fas fa-heart" id="heartNotLike" *ngIf="!favoriteCheck && isOnFavs"></i>
