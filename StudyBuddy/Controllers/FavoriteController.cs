@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using StudyBuddy.Models;
 
 namespace StudyBuddy.Controllers
@@ -58,15 +59,16 @@ namespace StudyBuddy.Controllers
             return favorite;
         }
 
-        // DELETE: Favorite/5
-        //[HttpDelete("{googleId}")]
-        //public Favorite DeleteFavoriteById(string googleId)
-        //{
-        //    Favorite deleted = dBContext.Favorites.Find(googleId);
-        //    dBContext.Favorites.Remove(deleted);
-        //    dBContext.SaveChanges();
-        //    return deleted;
-        //}
+        //DELETE: Favorite/5
+        [HttpDelete("{id}")]
+        public Favorite DeleteById(int id)
+        {
+            Favorite deleted = dBContext.Favorites.Find(id);
+            dBContext.Favorites.Remove(deleted);
+            dBContext.SaveChanges();
+
+            return deleted;
+        }
 
         [HttpDelete("{questionId}/{userId}")]
         public IActionResult DeleteFavoriteById(int questionId, string userId)

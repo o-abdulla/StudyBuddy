@@ -27,3 +27,15 @@ td {
 .answer {
     color: #555;
 }
+
+button.delete {
+    background-color: #ffffff; /* Red background color */
+    border-color: #dc3545; /* Red border color */
+    color: #dc3545; /* White text color */
+}
+
+button.delete:hover {
+    background-color: #dc3545; /* Darker red background color */
+    border-color: #ffffff; /* Darker red border color */
+    color: #ffffff;
+}

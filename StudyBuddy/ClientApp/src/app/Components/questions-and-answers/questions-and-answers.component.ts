@@ -16,6 +16,7 @@ export class QuestionsAndAnswersComponent {
   user: SocialUser = {} as SocialUser;
   loggedIn: boolean = false;
   toggleAnswer: boolean = false;
+  faved: boolean = false;
   // googleId: string = "";
 
   constructor(private _questionsAnswersService: QuestionsAnswersService,

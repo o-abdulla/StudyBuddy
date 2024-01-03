@@ -54,9 +54,9 @@ export class QuestionsAnswersService {
     return this.http.put<Favorite>(`${this.baseUrl}Favorite/${id}`, favorite);
   }
 
-  // DeleteFavoriteById(googleId:string):Observable<Favorite>{
-  //   return this.http.delete<Favorite>(`${this.baseUrl}Favorite/${googleId}`);
-  // }
+  deleteFavoriteById(id:number):Observable<Favorite>{
+    return this.http.delete<Favorite>(`${this.baseUrl}Favorite/${id}`);
+  }
 
   DeleteFavoriteById(questionId: number, userId: string): Observable<Favorite> {
     return this.http.delete<Favorite>(`${this.baseUrl}Favorite/${questionId}/${userId}`);
