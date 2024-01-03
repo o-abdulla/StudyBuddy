@@ -30,15 +30,22 @@ button.ans:hover {
     color: black;
 }
 
+button.fav:hover {
+    background-color: gold; /* Darker blue background color */
+    border-color: gold; /* Darker blue border color */
+    color: black;
+}
+
 button.delete {
-    background-color: #dc3545; /* Red background color */
+    background-color: #ffffff; /* Red background color */
     border-color: #dc3545; /* Red border color */
-    color: #fff; /* White text color */
+    color: #dc3545; /* White text color */
 }
 
 button.delete:hover {
-    background-color: #000000; /* Darker red background color */
-    border-color: #bd2130; /* Darker red border color */
+    background-color: #dc3545; /* Darker red background color */
+    border-color: #ffffff; /* Darker red border color */
+    color: #ffffff;
 }
 
 .answer {

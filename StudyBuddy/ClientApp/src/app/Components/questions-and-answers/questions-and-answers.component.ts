@@ -1,5 +1,5 @@
 import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { Favorite } from 'src/app/Models/favorite';
 import { QuestionsAndAnswers } from 'src/app/Models/questions-and-answers';
 import { QuestionsAnswersService } from 'src/app/Services/questions-answers.service';
@@ -18,7 +18,9 @@ export class QuestionsAndAnswersComponent {
   toggleAnswer: boolean = false;
   // googleId: string = "";
 
-  constructor(private _questionsAnswersService: QuestionsAnswersService, private authService: SocialAuthService) { }
+  constructor(private _questionsAnswersService: QuestionsAnswersService,
+    private authService: SocialAuthService,
+    ) { }
 
   ngOnInit(): void {
     this.authService.authState.subscribe((user: SocialUser) => {
