@@ -44,6 +44,7 @@ export class FavoriteListComponent {
     // return this.FavoritesListResult;
   }
 
+  // using this method to delete favorites
   deleteFav(id: number) {
     let target: number = this.FavoritesListResult.findIndex((question) => question.favoriteId == id);
     this.FavoritesListResult.splice(target, 1);
@@ -53,11 +54,13 @@ export class FavoriteListComponent {
     });
   }
 
+
+
   deleteFavorite(id: number, googleId: string) {
     let target: number = this.FavoritesListResult.findIndex((question) => question.userId === googleId);
     this.FavoritesListResult.splice(target, 1);
   
-    this._questionsAnswersService.DeleteFavoriteById(id, googleId).subscribe(response => {
+    this._questionsAnswersService.DeleteFavoriteByIds(id, googleId).subscribe(response => {
       console.log(response);
     });
   }

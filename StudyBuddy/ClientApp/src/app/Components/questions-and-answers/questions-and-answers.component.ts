@@ -88,7 +88,7 @@ deleteFavorite(id: number, googleId: string) {
   let target: number = this.FavoritesList.findIndex((question) => question.userId === googleId);
   this.FavoritesList.splice(target, 1);
 
-  this._questionsAnswersService.DeleteFavoriteById(id, googleId).subscribe(response => {
+  this._questionsAnswersService.DeleteFavoriteByIds(id, googleId).subscribe(response => {
     console.log(response);
   });
 }

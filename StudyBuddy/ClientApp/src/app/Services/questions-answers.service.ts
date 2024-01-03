@@ -58,7 +58,7 @@ export class QuestionsAnswersService {
     return this.http.delete<Favorite>(`${this.baseUrl}Favorite/${id}`);
   }
 
-  DeleteFavoriteById(questionId: number, userId: string): Observable<Favorite> {
+  DeleteFavoriteByIds(questionId: number, userId: string): Observable<Favorite> {
     return this.http.delete<Favorite>(`${this.baseUrl}Favorite/${questionId}/${userId}`);
   }
   
