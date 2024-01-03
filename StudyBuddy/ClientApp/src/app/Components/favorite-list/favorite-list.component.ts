@@ -45,7 +45,7 @@ export class FavoriteListComponent {
   }
 
   deleteFav(id: number) {
-    let target: number = this.FavoritesListResult.findIndex((question) => question.id == id);
+    let target: number = this.FavoritesListResult.findIndex((question) => question.favoriteId == id);
     this.FavoritesListResult.splice(target, 1);
 
     this._questionsAnswersService.deleteFavoriteById(id).subscribe(response => {
