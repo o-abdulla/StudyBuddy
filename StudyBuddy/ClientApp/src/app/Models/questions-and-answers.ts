@@ -1,5 +1,5 @@
 export interface QuestionsAndAnswers {
-toggleAnswer: any;
+    toggleAnswer: any;
     questionId: number;
     questions: string;
     answers: string;

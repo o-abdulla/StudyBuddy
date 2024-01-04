@@ -57,7 +57,7 @@ export class QuestionsAndAnswersComponent {
     favorite.answerId = newFavorite.questionId; // still getting null for answerId in sql table
     favorite.userId = googleId; // Assign the user's Google ID
     this._questionsAnswersService.AddFavorite(favorite).subscribe(response => {
-      console.log(response);
+      console.log("add favorite",response);
       this.FavoritesList.push(response);
     });
   }
@@ -79,28 +79,47 @@ export class QuestionsAndAnswersComponent {
     question.toggleAnswer = !question.toggleAnswer;
 }
 
-isFavorite(question: QuestionsAndAnswers): boolean {
-  return this.FavoritesList.some(favorite => favorite.questionId === question.questionId
-    && favorite.answerId === question.questionId);
-}
 
 deleteFavorite(id: number, googleId: string) {
   let target: number = this.FavoritesList.findIndex((question) => question.userId === googleId);
   this.FavoritesList.splice(target, 1);
-
+  
   this._questionsAnswersService.DeleteFavoriteByIds(id, googleId).subscribe(response => {
-    console.log(response);
+    console.log("delete favorite",response);
   });
 }
 
-toggleFavorite(question: QuestionsAndAnswers, googleId: string): void {
-  const isCurrentlyFavorite = this.isFavorite(question);
 
+isFavorite(question: QuestionsAndAnswers): boolean {
+  // console.log("isFavorite", question);
+  return this.FavoritesList.some(favorite => favorite.questionId === question.questionId);
+}
+
+// newMethod(question: number):boolean {
+//   let questionExists = false;
+
+//   this.FavoritesList.forEach((q) =>{
+//     if(q.questionId === question){
+//       questionExists = true;
+//     }
+    
+//   })
+  
+// return questionExists;
+
+// }
+
+toggleFavorite(question: QuestionsAndAnswers, googleId: string): void {
+  console.log("toggleFavorite",question)
+  let isCurrentlyFavorite = this.isFavorite(question);
+// this.ShowFavorites(this.user.id);
   if (isCurrentlyFavorite) {
     this.deleteFavorite(question.questionId, googleId);
+    this.ShowFavorites(this.user.id);
   } else {
     this.AddFavorite(question, googleId);
   }
+  this.ShowFavorites(this.user.id);
 }
 
 ShowFavorites(googleId:string): void {

@@ -1,38 +1,73 @@
 <h1>C# / SQL / Angular Questions</h1>
 
-<br>
+<br />
 
 <table>
-    <tr *ngFor="let q of QuestionsAnswersList">
-      <td>{{ q.questions }}</td>
-      <br>
-      <div *ngIf="q.toggleAnswer">
-        {{ q.answers }}
-      </div>
-      <td>
-        <button class="btn btn-outline-dark ans" (click)="showAnswer(q)">
-          {{ q.toggleAnswer ? 'Hide Answer' : 'Show Answer' }}
-        </button>
-      </td>
-      <td>
+  <tr *ngFor="let q of QuestionsAnswersList">
+    <td>{{ q.questions }}</td>
+    <br />
+    <div *ngIf="q.toggleAnswer">
+      {{ q.answers }}
+    </div>
+    <td>
+      <button class="btn btn-outline-dark ans" (click)="showAnswer(q)">
+        {{ q.toggleAnswer ? "Hide Answer" : "Show Answer" }}
+      </button>
+    </td>
+    <!-- <td *ngIf="newMethod(q) == true">
         <button class="btn btn-outline-dark fav" (click)="toggleFavorite(q, user.id)">
-          {{ isFavorite(q) ? 'Remove from Favorites' : 'Add to Favorites' }}
+           {{ isFavorite(q) ? 'Remove from Favorites' : 'Add to Favorites' }} 
+         
+        </button>
+      </td> -->
+    <!-- <div *ngFor="let f of FavoritesList"> -->
+    <div>
+      <td *ngIf="isFavorite(q) == true">
+        <button
+          class="btn btn-outline-dark fav"
+          (click)="toggleFavorite(q, user.id)"
+        >
+          Remove from Favorite
         </button>
       </td>
-      <td>
-        <button class="btn btn-outline-dark delete" (click)="DeleteQuestion(q.questionId)">
-          Delete
+      <td *ngIf="isFavorite(q) == false ">
+        <button
+          class="btn btn-outline-dark fav"
+          (click)="toggleFavorite(q, user.id)"
+        >
+          Add to Favorites
         </button>
       </td>
-    </tr>
+    </div>
+    <td>
+      <button
+        class="btn btn-outline-dark delete"
+        (click)="DeleteQuestion(q.questionId)"
+      >
+        Delete
+      </button>
+    </td>
+  </tr>
 </table>
 
-<br>
+<br />
+<br />
 
 <form>
-<h4>Add a Question?</h4>
-    <input type="text" [(ngModel)]="Question.questions" name="questions" placeholder="Question">
-    <br>
-    <input type="text" [(ngModel)]="Question.answers" name="answers" placeholder="Answer"> &nbsp; 
-    <button class="btn btn-outline-dark" (click)="newQuestion(Question)">Add Question</button>
+  <h4>Add a Question?</h4>
+  <input
+    type="text"
+    [(ngModel)]="Question.questions"
+    name="questions"
+    placeholder="Question" />
+  <br />
+  <input
+    type="text"
+    [(ngModel)]="Question.answers"
+    name="answers"
+    placeholder="Answer" />
+  &nbsp;
+  <button class="btn btn-outline-dark" (click)="newQuestion(Question)">
+    Add Question
+  </button>
 </form>

@@ -71,7 +71,7 @@ namespace StudyBuddy.Controllers
         }
 
         [HttpDelete("{questionId}/{userId}")]
-        public IActionResult DeleteFavoriteById(int questionId, string userId)
+        public IActionResult DeleteFavoriteByIds(int questionId, string userId)
         {
             Favorite deleted = dBContext.Favorites.FirstOrDefault(f => f.QuestionId == questionId && f.UserId == userId);
 
