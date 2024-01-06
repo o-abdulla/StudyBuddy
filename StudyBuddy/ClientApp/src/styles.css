@@ -14,3 +14,21 @@ code {
   background-color: #1b6ec2;
   border-color: #1861ac;
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Schoolbell&display=swap');
+
+.titleName, .favTitle {
+  font-family: 'Schoolbell', cursive;
+  text-align: center;
+  font-size: 50px;
+  color: #1b6ec2;
+}
+
+@media (max-width: 768px) {
+  /* Reduce spacing for smaller screens */
+  .btn,
+  h4,
+  input {
+    margin-bottom: 8px;
+  }
+}

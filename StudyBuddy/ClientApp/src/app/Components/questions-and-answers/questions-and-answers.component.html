@@ -1,4 +1,4 @@
-<h1>C# / SQL / Angular Questions</h1>
+<h1 class="titleName">Study Buddy</h1>
 
 <br />
 
@@ -10,7 +10,7 @@
       {{ q.answers }}
     </div>
     <td>
-      <button class="btn btn-outline-dark ans" (click)="showAnswer(q)">
+      <button class="btn btn-primary btn-sm ans" (click)="showAnswer(q)">
         {{ q.toggleAnswer ? "Hide Answer" : "Show Answer" }}
       </button>
     </td>
@@ -24,15 +24,15 @@
     <div>
       <td *ngIf="isFavorite(q) == true">
         <button
-          class="btn btn-outline-dark fav"
+          class="btn btn-primary btn-sm fav"
           (click)="toggleFavorite(q, user.id)"
         >
-          Remove from Favorite
+          Remove from Favorites
         </button>
       </td>
       <td *ngIf="isFavorite(q) == false ">
         <button
-          class="btn btn-outline-dark fav"
+          class="btn btn-primary btn-sm fav"
           (click)="toggleFavorite(q, user.id)"
         >
           Add to Favorites
@@ -53,21 +53,27 @@
 <br />
 <br />
 
-<form>
-  <h4>Add a Question?</h4>
-  <input
-    type="text"
-    [(ngModel)]="Question.questions"
-    name="questions"
-    placeholder="Question" />
+<form #questionForm="ngForm">
+    <h4>Add a Question To the Study List</h4>
+    <input
+      type="text"
+      [(ngModel)]="Question.questions"
+      name="questions"
+      placeholder="Question"
+      required
+    />
+    <br />
+    <input
+      type="text"
+      [(ngModel)]="Question.answers"
+      name="answers"
+      placeholder="Answer"
+      required
+    />
+    &nbsp;
+    <button class="btn btn-outline-dark btn-sm" (click)="newQuestion(Question)" [disabled]="questionForm.invalid">
+      Add Question
+    </button>
+    <p class="disclaimer" *ngIf="questionForm.invalid">* Both fields are required.</p>
+  </form>
   <br />
-  <input
-    type="text"
-    [(ngModel)]="Question.answers"
-    name="answers"
-    placeholder="Answer" />
-  &nbsp;
-  <button class="btn btn-outline-dark" (click)="newQuestion(Question)">
-    Add Question
-  </button>
-</form>

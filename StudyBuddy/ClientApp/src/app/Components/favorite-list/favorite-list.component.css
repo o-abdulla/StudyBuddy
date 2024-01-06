@@ -39,3 +39,8 @@ button.delete:hover {
     border-color: #ffffff; /* Darker red border color */
     color: #ffffff;
 }
+
+.logName {
+    font-family: 'Schoolbell', cursive;
+    font-size: 30px;
+}

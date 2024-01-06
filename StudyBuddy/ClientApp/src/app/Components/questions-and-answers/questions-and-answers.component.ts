@@ -43,6 +43,12 @@ export class QuestionsAndAnswersComponent {
   }
 
   newQuestion(addQuestion: QuestionsAndAnswers) {
+    if (!addQuestion.questions.trim() || !addQuestion.answers.trim()) {
+      // Display an error message or handle the lack of input
+      console.error('Both questions and answers are required.');
+      return;
+    }
+
     this._questionsAnswersService.PostQuestion(addQuestion).subscribe(response => {
       console.log(response);
       this.QuestionsAnswersList.push(response);
