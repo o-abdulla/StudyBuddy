@@ -3,6 +3,7 @@ import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { QuestionsAndAnswers } from '../Models/questions-and-answers';
 import { Favorite } from '../Models/favorite';
+import { DictionaryWord } from '../Models/dictionary-word';
 
 @Injectable({
   providedIn: 'root'
@@ -62,4 +63,10 @@ export class QuestionsAnswersService {
     return this.http.delete<Favorite>(`${this.baseUrl}Favorite/${questionId}/${userId}`);
   }
   
+
+  // Dictionary
+
+  GetDictionaryWord(word:string):Observable<DictionaryWord>{
+    return this.http.get<DictionaryWord>(`${this.baseUrl}Dictionary/${word}`);
+  }
 }
