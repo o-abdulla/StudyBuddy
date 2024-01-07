@@ -6,6 +6,12 @@ table {
     margin-bottom: 20px;
 }
 
+th {
+    font-size: 25px;
+    text-align: center;
+    font-family: 'Schoolbell', cursive;
+}
+
 tr {
     border-bottom: 1px solid #ddd;
 }
