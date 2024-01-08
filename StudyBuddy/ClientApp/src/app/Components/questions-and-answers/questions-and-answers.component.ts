@@ -3,6 +3,7 @@ import { ChangeDetectorRef, Component } from '@angular/core';
 import { Favorite } from 'src/app/Models/favorite';
 import { QuestionsAndAnswers } from 'src/app/Models/questions-and-answers';
 import { QuestionsAnswersService } from 'src/app/Services/questions-answers.service';
+import { DictionaryWord } from 'src/app/Models/dictionary-word';
 
 @Component({
   selector: 'app-questions-and-answers',

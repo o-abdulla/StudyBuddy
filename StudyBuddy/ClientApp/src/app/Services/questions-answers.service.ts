@@ -67,6 +67,6 @@ export class QuestionsAnswersService {
   // Dictionary
 
   GetDictionaryWord(word:string):Observable<DictionaryWord>{
-    return this.http.get<DictionaryWord>(`${this.baseUrl}Dictionary/${word}`);
+    return this.http.get<DictionaryWord>(`${this.baseUrl}DictionaryWord/${word}`);
   }
 }

@@ -4,12 +4,12 @@ using StudyBuddy.Models;
 
 namespace StudyBuddy.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class DictonaryWordController : ControllerBase
     {
         [HttpGet("{word}")]
-        public DictionaryModelDAL GetsDictionaryWord(string word)
+        public DictionaryModel GetTheDictionaryWord(string word)
         {
             return DictionaryModelDAL.GetDictionaryWord(word);
         }

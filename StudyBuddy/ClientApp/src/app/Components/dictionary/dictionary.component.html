@@ -1,0 +1,17 @@
+<h4>Dictionary Here:</h4>
+<input type="text" [(ngModel)]="searchWord" name="word" placeholder="Word" required /> &nbsp;
+<button class="btn btn-outline-dark" (click)="getDictionaryWord()">Look Up</button>
+<br />
+
+<div *ngIf="let w of dictionaryWordResult">
+    <p>{{ dictionaryWordResult.word }}</p>
+    <div *ngFor="let w of dictionaryWordResult.meanings">
+        <p>{{ w.partOfSpeech }}</p>
+        <div *ngFor="let d of w.definitions">
+            <p>{{ d.definition }}</p>
+            <p>{{ d.example }}</p>
+        </div>
+    <p>{{ dictionaryWordResult.meanings }}</p>
+    <!-- <p>{{ dictionaryWordResult.meanings[0].partOfSpeech }}</p> -->
+</div>
+<br />
