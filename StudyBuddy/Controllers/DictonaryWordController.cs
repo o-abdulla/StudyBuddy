@@ -6,12 +6,12 @@ namespace StudyBuddy.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    public class DictonaryWordController : ControllerBase
+    public class DictionaryWordController : Controller
     {
         [HttpGet("{word}")]
         public DictionaryModel GetTheDictionaryWord(string word)
         {
-            return DictionaryModelDAL.GetDictionaryWord(word);
+            return DictionaryModelDAL.GetDictionaryWord(word)[0];
         }
     }
 }

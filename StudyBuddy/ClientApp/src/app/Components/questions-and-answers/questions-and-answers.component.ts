@@ -18,6 +18,9 @@ export class QuestionsAndAnswersComponent {
   loggedIn: boolean = false;
   toggleAnswer: boolean = false;
   faved: boolean = false;
+  dictionaryWordResult: DictionaryWord = {} as DictionaryWord;
+  searchWord: string = "";
+  status: string = "";
   // googleId: string = "";
 
   constructor(private _questionsAnswersService: QuestionsAnswersService,
@@ -135,6 +138,16 @@ ShowFavorites(googleId:string): void {
     this.FavoritesList = response;
   });
   // return this.FavoritesListResult;
+}
+
+getDictionaryWord(): void{
+  this.status = "loading";
+  this._questionsAnswersService.GetDictionaryWord(this.searchWord).subscribe((response:DictionaryWord) => {
+    console.log(response);
+
+    this.dictionaryWordResult = response;
+    this.status = "";
+  })
 }
 
 }

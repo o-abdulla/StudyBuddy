@@ -5,7 +5,7 @@ namespace StudyBuddy.Models
 {
     public class DictionaryModelDAL
     {
-        public static DictionaryModel GetDictionaryWord(string word)//Adjust here
+        public static List<DictionaryModel> GetDictionaryWord(string word)//Adjust here
         {
             //Adjust
             //Setup
@@ -23,7 +23,7 @@ namespace StudyBuddy.Models
             //Adjust
             //Convert to c#
             //Install Newtonsoft.json
-            DictionaryModel result = JsonConvert.DeserializeObject<DictionaryModel>(json);
+            List<DictionaryModel> result = JsonConvert.DeserializeObject<List<DictionaryModel>>(json);
             return result;
         }
 
