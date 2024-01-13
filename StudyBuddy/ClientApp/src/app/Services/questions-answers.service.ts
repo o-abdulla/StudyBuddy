@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { QuestionsAndAnswers } from '../Models/questions-and-answers';
 import { Favorite } from '../Models/favorite';
 import { DictionaryWord } from '../Models/dictionary-word';
+import { Word } from '../Models/word';
 
 @Injectable({
   providedIn: 'root'
@@ -66,7 +67,11 @@ export class QuestionsAnswersService {
 
   // Dictionary
 
-  GetDictionaryWord(word:string):Observable<DictionaryWord>{
-    return this.http.get<DictionaryWord>(`${this.baseUrl}DictionaryWord/${word}`);
+  // GetDictionaryWord(word:string):Observable<DictionaryWord>{
+  //   return this.http.get<DictionaryWord>(`${this.baseUrl}DictionaryWord/${word}`);
+  // }
+
+  GetWordResults(word:string):Observable<Word>{
+    return this.http.get<Word>(`${this.baseUrl}Word/${word}`);
   }
 }

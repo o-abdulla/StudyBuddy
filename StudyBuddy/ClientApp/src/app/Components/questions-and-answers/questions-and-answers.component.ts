@@ -3,7 +3,7 @@ import { ChangeDetectorRef, Component } from '@angular/core';
 import { Favorite } from 'src/app/Models/favorite';
 import { QuestionsAndAnswers } from 'src/app/Models/questions-and-answers';
 import { QuestionsAnswersService } from 'src/app/Services/questions-answers.service';
-import { DictionaryWord } from 'src/app/Models/dictionary-word';
+import { Word } from 'src/app/Models/word';
 
 @Component({
   selector: 'app-questions-and-answers',
@@ -18,7 +18,7 @@ export class QuestionsAndAnswersComponent {
   loggedIn: boolean = false;
   toggleAnswer: boolean = false;
   faved: boolean = false;
-  dictionaryWordResult: DictionaryWord = {} as DictionaryWord;
+  dictionaryWordResult: Word = {} as Word;
   searchWord: string = "";
   status: string = "";
   // googleId: string = "";
@@ -142,7 +142,7 @@ ShowFavorites(googleId:string): void {
 
 getDictionaryWord(): void{
   this.status = "loading";
-  this._questionsAnswersService.GetDictionaryWord(this.searchWord).subscribe((response:DictionaryWord) => {
+  this._questionsAnswersService.GetWordResults(this.searchWord).subscribe((response:Word) => {
     console.log(response);
 
     this.dictionaryWordResult = response;

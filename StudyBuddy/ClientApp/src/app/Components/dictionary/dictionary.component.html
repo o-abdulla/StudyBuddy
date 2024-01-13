@@ -5,8 +5,19 @@
 <br />
 </form>
 
-    <p>{{ dictionaryWordResult.word }}</p>
-    <p>{{ dictionaryWordResult }}</p>
+    <!-- dictionary.component.html -->
+
+<h5>Word: {{ dictionaryWordResult.word }}</h5>
+<div *ngFor="let w of dictionaryWordResult.definitions">
+    <p>{{ w.partOfSpeech }}</p>
+    <p>{{ w.definition }}</p>
+</div>
+
+
+
+<div *ngIf="status === 'loading'">Loading...</div>
+
+
         <!-- <p>{{ dictionaryWordResult.meanings[0].partOfSpeech }}</p> -->
             <!-- <p>{{ d.definition }}</p>
             <p>{{ d.example }}</p> -->

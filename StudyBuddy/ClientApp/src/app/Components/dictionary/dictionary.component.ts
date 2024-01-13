@@ -2,6 +2,7 @@ import { Component, Input, Output } from '@angular/core';
 import { DictionaryWord } from 'src/app/Models/dictionary-word';
 import { QuestionsAnswersService } from 'src/app/Services/questions-answers.service';
 import { EventEmitter } from '@angular/core';
+import { Word } from 'src/app/Models/word';
 
 
 @Component({
@@ -13,9 +14,9 @@ export class DictionaryComponent {
 
   searchWord: string = "";
   @Output() dictionaryWord = new EventEmitter<string>();
-  dictionaryWordResult: DictionaryWord = {} as DictionaryWord;
+  dictionaryWordResult: Word = {} as Word;
   status: string = "";
-  @Input() DisplayWord: DictionaryWord = {} as DictionaryWord;
+  @Input() DisplayWord: Word = {} as Word;
 
   constructor(private _questionsAnswersService: QuestionsAnswersService
 
@@ -27,7 +28,7 @@ export class DictionaryComponent {
 
   getDictionaryWord(): void{
     this.status = "loading";
-    this._questionsAnswersService.GetDictionaryWord(this.searchWord).subscribe((response:DictionaryWord) => {
+    this._questionsAnswersService.GetWordResults(this.searchWord).subscribe((response:Word) => {
       console.log(response);
 
       this.dictionaryWordResult = response;
