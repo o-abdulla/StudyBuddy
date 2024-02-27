@@ -18,7 +18,7 @@ export class QuestionsAndAnswersComponent {
   loggedIn: boolean = false;
   toggleAnswer: boolean = false;
   faved: boolean = false;
-  dictionaryWordResult: Word = {} as Word;
+  // dictionaryWordResult: Word = {} as Word;
   searchWord: string = "";
   status: string = "";
   // googleId: string = "";
@@ -140,14 +140,14 @@ ShowFavorites(googleId:string): void {
   // return this.FavoritesListResult;
 }
 
-getDictionaryWord(): void{
-  this.status = "loading";
-  this._questionsAnswersService.GetWordResults(this.searchWord).subscribe((response:Word) => {
-    console.log(response);
+// getDictionaryWord(): void{
+//   this.status = "loading";
+//   this._questionsAnswersService.GetWordResults(this.searchWord).subscribe((response:Word) => {
+//     console.log(response);
 
-    this.dictionaryWordResult = response;
-    this.status = "";
-  })
-}
+//     this.dictionaryWordResult = response;
+//     this.status = "";
+//   })
+// }
 
 }

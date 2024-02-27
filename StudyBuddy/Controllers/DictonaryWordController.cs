@@ -8,6 +8,9 @@ namespace StudyBuddy.Controllers
     [ApiController]
     public class DictionaryWordController : Controller
     {
+
+        // ***** NOT USING THIS *****
+
         [HttpGet("{word}")]
         public DictionaryModel GetTheDictionaryWord(string word)
         {

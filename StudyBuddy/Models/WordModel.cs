@@ -4,12 +4,12 @@
     {
 
         public string Word { get; set; }
-        public List<Definition> Definitions { get; set; }
+        public List<DefinitionModel> Definitions { get; set; }
 
 
-        public partial class Definition
+        public partial class DefinitionModel
         {
-            public string DefinitionDefinition { get; set; }
+            public string? Definition { get; set; }
             public string PartOfSpeech { get; set; }
         }
     }
