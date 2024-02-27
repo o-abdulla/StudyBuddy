@@ -68,3 +68,16 @@ button.delete:hover {
 h4 {
     font-family: 'Schoolbell', cursive;
 } 
+
+.container {
+    display: flex; /* Use flexbox for layout */
+}
+
+.left-column {
+    flex: 1; /* Occupy available space */
+    padding-right: 20px; /* Add some spacing */
+}
+
+.right-column {
+    width: 300px; /* Fixed width for the dictionary component */
+}

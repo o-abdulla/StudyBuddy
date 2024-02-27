@@ -54,6 +54,8 @@
 <br />
 <br />
 
+<div class="container">
+  <div class="left-column">
 <form #questionForm="ngForm">
     <h4>Add a Question To the Study List</h4>
     <input
@@ -78,5 +80,10 @@
     <p class="disclaimer" *ngIf="questionForm.invalid">* Both fields are required.</p>
   </form>
   <br />
+</div>
 
-  <app-dictionary></app-dictionary>
+  <div class="right-column">
+    <app-dictionary></app-dictionary>
+  </div>
+</div>
+
