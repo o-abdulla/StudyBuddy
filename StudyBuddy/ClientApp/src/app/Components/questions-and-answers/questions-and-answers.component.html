@@ -3,53 +3,40 @@
 <br />
 
 <table>
-    <th>Questions</th>
-  <tr *ngFor="let q of QuestionsAnswersList">
-    <td>{{ q.questions }}</td>
-    <br /> 
-    <div *ngIf="q.toggleAnswer">
-    {{ q.answers }}
-    </div>
-    <td>
-    <button class="btn btn-primary btn-sm ans" (click)="showAnswer(q)">
-        {{ q.toggleAnswer ? "Hide Answer" : "Show Answer" }}
-    </button>
-    </td>
-    <!-- <td *ngIf="newMethod(q) == true">
-        <button class="btn btn-outline-dark fav" (click)="toggleFavorite(q, user.id)">
-           {{ isFavorite(q) ? 'Remove from Favorites' : 'Add to Favorites' }} 
-         
+  <thead>
+    <tr>
+      <th>Questions</th>
+      <th>Answers</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let q of QuestionsAnswersList">
+      <td>{{ q.questions }}</td>
+      <td *ngIf="q.toggleAnswer">{{ q.answers }}</td>
+      <td class="vertical-line">
+        <button class="btn btn-primary btn-sm ans" (click)="showAnswer(q)">
+          {{ q.toggleAnswer ? "Hide Answer" : "Show Answer" }}
         </button>
-      </td> -->
-    <!-- <div *ngFor="let f of FavoritesList"> -->
-    <div>
-      <td *ngIf="isFavorite(q) == true">
-        <button
-          class="btn btn-primary btn-sm fav"
-          (click)="toggleFavorite(q, user.id)"
-        >
+      </td>
+      <td *ngIf="isFavorite(q)">
+        <button class="btn btn-primary btn-sm fav" (click)="toggleFavorite(q, user.id)">
           Remove from Favorites
         </button>
       </td>
-      <td *ngIf="isFavorite(q) == false ">
-        <button
-          class="btn btn-primary btn-sm fav"
-          (click)="toggleFavorite(q, user.id)"
-        >
+      <td *ngIf="!isFavorite(q)">
+        <button class="btn btn-primary btn-sm fav" (click)="toggleFavorite(q, user.id)">
           Add to Favorites
         </button>
       </td>
-    </div>
-    <td>
-      <button
-        class="btn btn-outline-dark delete"
-        (click)="DeleteQuestion(q.questionId)"
-      >
-        Delete
-      </button>
-    </td>
-  </tr>
+      <td>
+        <button class="btn btn-outline-dark delete" (click)="DeleteQuestion(q.questionId)">
+          Delete
+        </button>
+      </td>
+    </tr>
+  </tbody>
 </table>
+
 
 <br />
 <br />
