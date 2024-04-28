@@ -9,7 +9,7 @@ namespace StudyBuddy.Controllers
     public class DictionaryWordController : Controller
     {
 
-        // ***** NOT USING THIS *****
+        //                  ***** NOT USING THIS *****
 
         [HttpGet("{word}")]
         public DictionaryModel GetTheDictionaryWord(string word)

@@ -10,7 +10,7 @@
 <h5>Word: {{ dictionaryWordResult.word }}</h5>
 <div *ngFor="let w of dictionaryWordResult.definitions">
     <p>{{ w.partOfSpeech }} <br>
-    {{ w.definition }}</p>
+    <i>{{ w.definition }}</i></p>
     <hr>
 </div>
 
