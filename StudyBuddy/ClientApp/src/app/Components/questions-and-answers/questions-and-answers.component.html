@@ -28,7 +28,7 @@
           Add to Favorites
         </button>
       </td>
-      <td>
+      <td *ngIf="loggedIn">
         <button class="btn btn-outline-dark delete" (click)="DeleteQuestion(q.questionId)">
           Delete
         </button>
