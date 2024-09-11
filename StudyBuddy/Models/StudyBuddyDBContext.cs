@@ -45,18 +45,18 @@ namespace StudyBuddy.Models
                 entity.HasOne(d => d.Answer)
                     .WithMany(p => p.FavoriteAnswers)
                     .HasForeignKey(d => d.AnswerId)
-                    .HasConstraintName("FK__Favorites__Answe__619B8048");
+                    .HasConstraintName("FK__Favorites__Answe__70DDC3D8");
 
                 entity.HasOne(d => d.Question)
                     .WithMany(p => p.FavoriteQuestions)
                     .HasForeignKey(d => d.QuestionId)
-                    .HasConstraintName("FK__Favorites__Quest__60A75C0F");
+                    .HasConstraintName("FK__Favorites__Quest__6FE99F9F");
             });
 
             modelBuilder.Entity<QuestionsAndAnswer>(entity =>
             {
                 entity.HasKey(e => e.QuestionId)
-                    .HasName("PK__Question__0DC06F8CAF7336CD");
+                    .HasName("PK__Question__0DC06F8C31A4CDE3");
 
                 entity.Property(e => e.QuestionId).HasColumnName("QuestionID");
 
