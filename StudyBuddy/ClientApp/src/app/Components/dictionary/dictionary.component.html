@@ -1,5 +1,5 @@
 <form #dictionaryForm="ngForm">
-<h4>Dictionary Here:</h4>
+<h4>Dictionary:</h4>
 <input type="text" [(ngModel)]="searchWord" name="word" placeholder="Word" required /> &nbsp;
 <button class="btn btn-outline-dark" (click)="getDictionaryWord()" [disabled]="dictionaryForm.invalid">Look Up</button>
 <br />
@@ -7,7 +7,7 @@
 
     <!-- dictionary.component.html -->
 
-<h5>Word: {{ dictionaryWordResult.word }}</h5>
+<h5>{{ dictionaryWordResult.word }}</h5>
 <div *ngFor="let w of dictionaryWordResult.definitions">
     <p>{{ w.partOfSpeech }} <br>
     <i>{{ w.definition }}</i></p>

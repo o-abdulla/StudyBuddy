@@ -1,4 +1,3 @@
-/* Add the following styles to your external CSS file */
 
 table {
     width: 100%;
@@ -19,6 +18,11 @@ tr {
 td {
     padding: 10px;
     text-align: left;
+}
+
+.green-answer {
+    color: green;
+    /* font-weight: bold; */
 }
 
 button {

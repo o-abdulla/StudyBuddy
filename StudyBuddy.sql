@@ -2,11 +2,11 @@
 
 USE StudyBuddyDB;
 
---CREATE TABLE QuestionsAndAnswers (
---    QuestionID INT NOT NULL PRIMARY KEY IDENTITY(1,1),
---    Questions NVARCHAR(3000),
---    Answers NVARCHAR(3000)
---);
+CREATE TABLE QuestionsAndAnswers (
+    QuestionID INT NOT NULL PRIMARY KEY IDENTITY(1,1),
+    Questions NVARCHAR(3000),
+    Answers NVARCHAR(3000)
+);
 
 --INSERT INTO QuestionsAndAnswers(Questions, Answers)
 --VALUES('Explain how data flows from a component’s class to its template. Show an example.', 'Data flows from a component''s class to its template through property binding. You can bind a property of the component class to an element or directive in the template'),
@@ -43,6 +43,9 @@ SELECT * FROM Favorites;
 
 -- Drop the existing Favorites tab
 --DROP TABLE Favorites;
+
+
+--                     **** USE THIS FAVORITE TABLE **** 
 
 -- Create a new Favorites table with foreign key references for QuestionID and AnswerID
 --CREATE TABLE Favorites (

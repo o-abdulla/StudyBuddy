@@ -12,7 +12,7 @@
   <tbody>
     <tr *ngFor="let q of QuestionsAnswersList">
       <td>{{ q.questions }}</td>
-      <td *ngIf="q.toggleAnswer">{{ q.answers }}</td>
+      <td *ngIf="q.toggleAnswer" class="green-answer">{{ q.answers }}</td>
       <td class="vertical-line">
         <button class="btn btn-primary btn-sm ans" (click)="showAnswer(q)">
           {{ q.toggleAnswer ? "Hide Answer" : "Show Answer" }}
@@ -30,7 +30,7 @@
       </td>
       <td *ngIf="loggedIn">
         <button class="btn btn-outline-dark delete" (click)="DeleteQuestion(q.questionId)">
-          Delete
+          X
         </button>
       </td>
     </tr>
