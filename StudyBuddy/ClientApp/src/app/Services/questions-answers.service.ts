@@ -16,8 +16,8 @@ export class QuestionsAnswersService {
 
   constructor(private http:HttpClient, @Inject('BASE_URL') private baseUrl: string) { }
 
-  GetQuestions():Observable<QuestionsAndAnswers[]>{
-    return this.http.get<QuestionsAndAnswers[]>(`${this.baseUrl}QuestionsAnswers`);
+  GetQuestions(userId: string): Observable<QuestionsAndAnswers[]> {
+    return this.http.get<QuestionsAndAnswers[]>(`${this.baseUrl}QuestionsAnswers/user/${userId}`);
   }
 
   GetById(id:number):Observable<QuestionsAndAnswers>{

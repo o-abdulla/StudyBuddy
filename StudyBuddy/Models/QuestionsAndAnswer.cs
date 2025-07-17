@@ -15,6 +15,8 @@ namespace StudyBuddy.Models
         public string? Questions { get; set; }
         public string? Answers { get; set; }
 
+        public string? UserId { get; set; }
+
         public virtual ICollection<Favorite> FavoriteAnswers { get; set; }
         public virtual ICollection<Favorite> FavoriteQuestions { get; set; }
     }

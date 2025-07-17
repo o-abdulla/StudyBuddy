@@ -23,17 +23,18 @@ export class FavoriteListComponent {
     this.authService.authState.subscribe((user: SocialUser) => {
       this.user = user;
       this.loggedIn = (user != null);
-      this.ShowQuestions();
-      this.ShowFavorites(this.user.id);
+      if (this.loggedIn) {
+        this.ShowQuestions(this.user.id);
+        this.ShowFavorites(this.user.id);
+      }
     });
   }
 
-  ShowQuestions():QuestionsAndAnswers[]{
-    this._questionsAnswersService.GetQuestions().subscribe((response:QuestionsAndAnswers[]) => {
-      console.log(response)
+  ShowQuestions(userId: string): void {
+    this._questionsAnswersService.GetQuestions(userId).subscribe((response: QuestionsAndAnswers[]) => {
+      console.log(response);
       this.QuestionsAnswersList = response;
     });
-    return this.QuestionsAnswersList;
   }
 
   ShowFavorites(googleId:string): void {

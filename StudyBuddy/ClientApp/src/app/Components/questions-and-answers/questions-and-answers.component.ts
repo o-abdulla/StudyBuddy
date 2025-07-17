@@ -31,19 +31,19 @@ export class QuestionsAndAnswersComponent {
     this.authService.authState.subscribe((user: SocialUser) => {
       this.user = user;
       this.loggedIn = (user != null);
-      this.ShowQuestions();
-      this.ShowFavorites(this.user.id);
-      this.FavoritesList = this._questionsAnswersService.ShowFavorites(this.user.id);
+      if (this.loggedIn) {
+        this.ShowQuestions(this.user.id);
+        this.ShowFavorites(this.user.id);
+        this.FavoritesList = this._questionsAnswersService.ShowFavorites(this.user.id);
+      }
     });
-    this.ShowQuestions();
   }
 
-  ShowQuestions():QuestionsAndAnswers[]{
-    this._questionsAnswersService.GetQuestions().subscribe((response:QuestionsAndAnswers[]) => {
-      console.log(response)
+  ShowQuestions(userId: string): void {
+    this._questionsAnswersService.GetQuestions(userId).subscribe((response: QuestionsAndAnswers[]) => {
+      console.log(response);
       this.QuestionsAnswersList = response;
     });
-    return this.QuestionsAnswersList;
   }
 
   newQuestion(addQuestion: QuestionsAndAnswers) {
@@ -52,7 +52,10 @@ export class QuestionsAndAnswersComponent {
       console.error('Both questions and answers are required.');
       return;
     }
-
+  
+    // Ensure userId is set
+    addQuestion.userId = this.user.id;
+  
     this._questionsAnswersService.PostQuestion(addQuestion).subscribe(response => {
       console.log(response);
       this.QuestionsAnswersList.push(response);

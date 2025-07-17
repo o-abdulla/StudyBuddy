@@ -10,11 +10,11 @@ namespace StudyBuddy.Controllers
     {
         StudyBuddyDBContext dBContext = new StudyBuddyDBContext();
 
-        // GET: QuestionsAnswers
-        [HttpGet]
-        public List<QuestionsAndAnswer> GetQuestions()
+        // GET: QuestionsAnswers/user/{userId}
+        [HttpGet("user/{userId}")]
+        public List<QuestionsAndAnswer> GetQuestionsByUser(string userId)
         {
-            return dBContext.QuestionsAndAnswers.ToList();
+            return dBContext.QuestionsAndAnswers.Where(q => q.UserId == userId).ToList();
         }
 
         // GET: QuestionsAnswers/5
