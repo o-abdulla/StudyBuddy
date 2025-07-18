@@ -20,6 +20,10 @@ export class QuestionsAnswersService {
     return this.http.get<QuestionsAndAnswers[]>(`${this.baseUrl}QuestionsAnswers/user/${userId}`);
   }
 
+  GetExampleQuestions():Observable<QuestionsAndAnswers[]>{
+    return this.http.get<QuestionsAndAnswers[]>(`${this.baseUrl}QuestionsAnswers/examples`);
+  }
+
   GetById(id:number):Observable<QuestionsAndAnswers>{
     return this.http.get<QuestionsAndAnswers>(`${this.baseUrl}QuestionsAnswers/${id}`);
   }

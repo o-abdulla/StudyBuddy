@@ -17,6 +17,13 @@ namespace StudyBuddy.Controllers
             return dBContext.QuestionsAndAnswers.Where(q => q.UserId == userId).ToList();
         }
 
+        // GET: QuestionsAnswers/examples
+        [HttpGet("examples")]
+        public List<QuestionsAndAnswer> GetExampleQuestons()
+        {
+            return dBContext.QuestionsAndAnswers.Where(q => q.UserId == null).ToList();
+        }
+
         // GET: QuestionsAnswers/5
         [HttpGet("{id}")]
         public QuestionsAndAnswer GetById(int id)

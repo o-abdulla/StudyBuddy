@@ -28,6 +28,7 @@ export class QuestionsAndAnswersComponent {
     ) { }
 
   ngOnInit(): void {
+    let exampleShown = false;
     this.authService.authState.subscribe((user: SocialUser) => {
       this.user = user;
       this.loggedIn = (user != null);
@@ -35,8 +36,19 @@ export class QuestionsAndAnswersComponent {
         this.ShowQuestions(this.user.id);
         this.ShowFavorites(this.user.id);
         this.FavoritesList = this._questionsAnswersService.ShowFavorites(this.user.id);
+        exampleShown = true;
+      } else {
+        this.ShowExampleQuestions();
+        exampleShown = true;
       }
     });
+
+    // Fallback: If authState doesn't emit quickly, show examples after a short delay
+    setTimeout(() => {
+      if (!this.loggedIn && !exampleShown) {
+        this.ShowExampleQuestions();
+      }
+    }, 500); // 0.5s delay, adjust as needed
   }
 
   ShowQuestions(userId: string): void {
@@ -141,6 +153,12 @@ ShowFavorites(googleId:string): void {
     this.FavoritesList = response;
   });
   // return this.FavoritesListResult;
+}
+
+ShowExampleQuestions(): void {
+  this._questionsAnswersService.GetExampleQuestions().subscribe((response: QuestionsAndAnswers[]) => {
+    this.QuestionsAnswersList = response;
+  });
 }
 
 // getDictionaryWord(): void{
