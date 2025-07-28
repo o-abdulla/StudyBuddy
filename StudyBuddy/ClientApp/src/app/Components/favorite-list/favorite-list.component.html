@@ -1,29 +1,52 @@
-<h1 class="favTitle">Saved Questions</h1>
+<div class="favorites-container fade-in">
+  <h1 class="favTitle">Saved Questions</h1>
 
-<br>
+  <div class="welcome-section" *ngIf="loggedIn == true">
+    <div class="welcome-card card">
+      <div class="welcome-content">
+        <i class="fas fa-user-circle welcome-icon"></i>
+        <h4 class="logName">Hey {{user.firstName}}!</h4>
+        <p class="welcome-subtitle">Here are your saved study materials</p>
+      </div>
+    </div>
+  </div>
 
-<h4 class="logName" *ngIf="loggedIn == true">Hey {{user.firstName}}!</h4>
-
-<br>
-
-<div>
-    <table>
-        <tr *ngFor="let f of FavoritesListResult">
-            <td>
-                <div *ngFor="let q of QuestionsAnswersList">
-                    <div *ngIf="f.questionId == q.questionId" class="favorite-item">
-                        <p class="question">{{ q.questions }}</p>
-                        <p class="answer">{{ q.answers }}</p>
-                    </div>
-                </div>
-            </td>
-            <td>
-                <button class="btn btn-outline-dark delete" (click)="deleteFav(f.favoriteId)">
-                    X
+  <div class="favorites-section">
+    <div class="favorites-grid" *ngIf="FavoritesListResult.length > 0">
+      <div class="favorite-card card" *ngFor="let f of FavoritesListResult; trackBy: trackByFavoriteId">
+        <div class="favorite-content">
+          <div *ngFor="let q of QuestionsAnswersList">
+            <div *ngIf="f.questionId == q.questionId" class="favorite-item">
+              <div class="favorite-header">
+                <h3 class="question">{{ q.questions }}</h3>
+                <button 
+                  class="btn btn-sm delete-btn" 
+                  (click)="deleteFav(f.favoriteId)"
+                  title="Remove from favorites">
+                  <i class="fas fa-trash"></i>
                 </button>
-            </td>
-        </tr>
-    </table>
+              </div>
+              <div class="answer-section">
+                <i class="fas fa-lightbulb answer-icon"></i>
+                <p class="answer">{{ q.answers }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Empty State -->
+    <div class="empty-state" *ngIf="FavoritesListResult.length === 0">
+      <i class="fas fa-heart"></i>
+      <h3>No Favorites Yet</h3>
+      <p>Start adding questions to your favorites to see them here!</p>
+      <a routerLink="/questions-and-answers" class="btn btn-primary">
+        <i class="fas fa-plus"></i>
+        Browse Questions
+      </a>
+    </div>
+  </div>
 </div>
 
 

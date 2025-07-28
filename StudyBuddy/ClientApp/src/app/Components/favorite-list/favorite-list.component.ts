@@ -65,4 +65,8 @@ export class FavoriteListComponent {
       console.log(response);
     });
   }
+
+  trackByFavoriteId(index: number, favorite: Favorite): number {
+    return favorite.favoriteId;
+  }
 }

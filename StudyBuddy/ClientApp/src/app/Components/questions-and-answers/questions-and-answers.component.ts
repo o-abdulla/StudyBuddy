@@ -161,6 +161,10 @@ ShowExampleQuestions(): void {
   });
 }
 
+trackByQuestionId(index: number, question: QuestionsAndAnswers): number {
+  return question.questionId;
+}
+
 // getDictionaryWord(): void{
 //   this.status = "loading";
 //   this._questionsAnswersService.GetWordResults(this.searchWord).subscribe((response:Word) => {

@@ -1,75 +1,104 @@
-<h1 class="titleName">Study Buddy</h1>
+<div class="main-container fade-in">
+  <h1 class="titleName">Study Buddy</h1>
 
-<br />
+  <!-- Questions and Answers Section -->
+  <div class="questions-section">
+    <div class="questions-grid">
+      <div class="question-card card" *ngFor="let q of QuestionsAnswersList; trackBy: trackByQuestionId">
+        <div class="question-header">
+          <h3 class="question-text">{{ q.questions }}</h3>
+          <div class="question-actions">
+            <button 
+              class="btn btn-primary btn-sm action-btn answer-btn" 
+              (click)="showAnswer(q)"
+              [class.active]="q.toggleAnswer">
+              <i class="fas" [class.fa-eye]="!q.toggleAnswer" [class.fa-eye-slash]="q.toggleAnswer"></i>
+              {{ q.toggleAnswer ? "Hide Answer" : "Show Answer" }}
+            </button>
+            
+            <button 
+              class="btn btn-sm action-btn favorite-btn" 
+              [class.favorited]="isFavorite(q)"
+              (click)="toggleFavorite(q, user.id)">
+              <i class="fas" [class.fa-heart]="isFavorite(q)" [class.fa-heart-o]="!isFavorite(q)"></i>
+              {{ isFavorite(q) ? "Remove" : "Favorite" }}
+            </button>
+            
+            <button 
+              *ngIf="loggedIn"
+              class="btn btn-sm action-btn delete-btn" 
+              (click)="DeleteQuestion(q.questionId)"
+              title="Delete question">
+              <i class="fas fa-trash"></i>
+            </button>
+          </div>
+        </div>
+        
+        <div class="answer-section" *ngIf="q.toggleAnswer">
+          <div class="answer-content">
+            <i class="fas fa-lightbulb answer-icon"></i>
+            <p class="answer-text">{{ q.answers }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Questions</th>
-      <th>Answers</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let q of QuestionsAnswersList">
-      <td>{{ q.questions }}</td>
-      <td *ngIf="q.toggleAnswer" class="green-answer">{{ q.answers }}</td>
-      <td class="vertical-line">
-        <button class="btn btn-primary btn-sm ans" (click)="showAnswer(q)">
-          {{ q.toggleAnswer ? "Hide Answer" : "Show Answer" }}
+  <!-- Add Question Form -->
+  <div class="form-section card">
+    <div class="form-header">
+      <h4><i class="fas fa-plus-circle"></i> Add a New Question</h4>
+      <p class="form-subtitle">Create your own study materials</p>
+    </div>
+    
+    <form #questionForm="ngForm" class="question-form">
+      <div class="form-group">
+        <label for="questionInput">Question</label>
+        <input
+          id="questionInput"
+          type="text"
+          [(ngModel)]="Question.questions"
+          name="questions"
+          placeholder="Enter your question here..."
+          class="form-control"
+          required
+        />
+      </div>
+      
+      <div class="form-group">
+        <label for="answerInput">Answer</label>
+        <textarea
+          id="answerInput"
+          [(ngModel)]="Question.answers"
+          name="answers"
+          placeholder="Enter the answer here..."
+          class="form-control"
+          rows="3"
+          required
+        ></textarea>
+      </div>
+      
+      <div class="form-actions">
+        <button 
+          class="btn btn-primary" 
+          (click)="newQuestion(Question)" 
+          [disabled]="questionForm.invalid">
+          <i class="fas fa-plus"></i>
+          Add Question
         </button>
-      </td>
-      <td *ngIf="isFavorite(q)">
-        <button class="btn btn-primary btn-sm fav" (click)="toggleFavorite(q, user.id)">
-          Remove from Favorites
-        </button>
-      </td>
-      <td *ngIf="!isFavorite(q)">
-        <button class="btn btn-primary btn-sm fav" (click)="toggleFavorite(q, user.id)">
-          Add to Favorites
-        </button>
-      </td>
-      <td *ngIf="loggedIn">
-        <button class="btn btn-outline-dark delete" (click)="DeleteQuestion(q.questionId)">
-          X
-        </button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+        
+        <div class="form-validation" *ngIf="questionForm.invalid && questionForm.touched">
+          <p class="validation-message">
+            <i class="fas fa-exclamation-triangle"></i>
+            Both question and answer fields are required.
+          </p>
+        </div>
+      </div>
+    </form>
+  </div>
 
-
-<br />
-<br />
-
-<div class="container">
-  <div class="left-column">
-<form #questionForm="ngForm">
-    <h4>Add a Question To the Study List</h4>
-    <input
-      type="text"
-      [(ngModel)]="Question.questions"
-      name="questions"
-      placeholder="Question"
-      required
-    />
-    <br />
-    <input
-      type="text"
-      [(ngModel)]="Question.answers"
-      name="answers"
-      placeholder="Answer"
-      required
-    />
-    &nbsp;
-    <button class="btn btn-outline-dark btn-sm" (click)="newQuestion(Question)" [disabled]="questionForm.invalid">
-      Add Question
-    </button>
-    <p class="disclaimer" *ngIf="questionForm.invalid">* Both fields are required.</p>
-  </form>
-  <br />
-</div>
-
-  <div class="right-column">
+  <!-- Dictionary Section -->
+  <div class="dictionary-section">
     <app-dictionary></app-dictionary>
   </div>
 </div>

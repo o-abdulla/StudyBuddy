@@ -35,4 +35,17 @@ export class DictionaryComponent {
       this.status = "";
     })
   }
+
+  copyToClipboard(text: string): void {
+    navigator.clipboard.writeText(text).then(() => {
+      // You could add a toast notification here
+      console.log('Text copied to clipboard');
+    }).catch(err => {
+      console.error('Failed to copy text: ', err);
+    });
+  }
+
+  trackByDefinition(index: number, definition: any): number {
+    return index;
+  }
 }

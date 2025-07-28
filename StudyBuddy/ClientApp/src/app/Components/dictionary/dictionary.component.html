@@ -1,22 +1,63 @@
-<form #dictionaryForm="ngForm">
-<h4>Dictionary:</h4>
-<input type="text" [(ngModel)]="searchWord" name="word" placeholder="Word" required /> &nbsp;
-<button class="btn btn-outline-dark" (click)="getDictionaryWord()" [disabled]="dictionaryForm.invalid">Look Up</button>
-<br />
-</form>
+<div class="dictionary-container card">
+  <div class="dictionary-header">
+    <h4><i class="fas fa-book"></i> Dictionary Lookup</h4>
+    <p class="dictionary-subtitle">Search for word definitions and meanings</p>
+  </div>
 
-    <!-- dictionary.component.html -->
+  <form #dictionaryForm="ngForm" class="dictionary-form">
+    <div class="form-group">
+      <label for="wordInput">Word to Look Up</label>
+      <div class="input-group">
+        <input 
+          id="wordInput"
+          type="text" 
+          [(ngModel)]="searchWord" 
+          name="word" 
+          placeholder="Enter a word..." 
+          class="form-control"
+          required 
+        />
+        <button 
+          class="btn btn-primary lookup-btn" 
+          (click)="getDictionaryWord()" 
+          [disabled]="dictionaryForm.invalid">
+          <i class="fas fa-search"></i>
+          Look Up
+        </button>
+      </div>
+    </div>
+  </form>
 
-<h5>{{ dictionaryWordResult.word }}</h5>
-<div *ngFor="let w of dictionaryWordResult.definitions">
-    <p>{{ w.partOfSpeech }} <br>
-    <i>{{ w.definition }}</i></p>
-    <hr>
+  <!-- Loading State -->
+  <div *ngIf="status === 'loading'" class="loading-state">
+    <div class="loading-spinner"></div>
+    <p>Searching for definitions...</p>
+  </div>
+
+  <!-- Results Section -->
+  <div *ngIf="dictionaryWordResult.word" class="results-section">
+    <div class="word-header">
+      <h5 class="word-title">{{ dictionaryWordResult.word }}</h5>
+      <div class="word-actions">
+        <button class="btn btn-sm btn-outline-primary" (click)="copyToClipboard(dictionaryWordResult.word)">
+          <i class="fas fa-copy"></i>
+        </button>
+      </div>
+    </div>
+    
+    <div class="definitions-list">
+      <div *ngFor="let definition of dictionaryWordResult.definitions; trackBy: trackByDefinition" class="definition-card">
+        <div class="definition-header">
+          <span class="part-of-speech">{{ definition.partOfSpeech }}</span>
+        </div>
+        <p class="definition-text">{{ definition.definition }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Empty State -->
+  <div *ngIf="!dictionaryWordResult.word && status !== 'loading'" class="empty-state">
+    <i class="fas fa-search"></i>
+    <p>Enter a word above to see its definition</p>
+  </div>
 </div>
-
-
-
-<div *ngIf="status === 'loading'">Loading...</div>
-
-
-<br />

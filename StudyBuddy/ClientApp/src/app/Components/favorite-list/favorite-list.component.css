@@ -1,46 +1,290 @@
-div {
-    margin-top: 20px;
+/* Favorites Container */
+.favorites-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
 }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
+/* Welcome Section */
+.welcome-section {
+  margin-bottom: 2rem;
 }
 
-td {
-    border: 1px solid #ddd;
-    padding: 8px;
+.welcome-card {
+  padding: 2rem;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.8) 0%, rgba(118, 75, 162, 0.8) 100%);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  box-shadow: var(--shadow-lg);
 }
 
-.favorite-item {
-    background-color: #f9f9f9;
-    margin-bottom: 10px;
-    padding: 10px;
-    border-radius: 5px;
+.welcome-content {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
 }
 
-.question {
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
-.answer {
-    color: green;
-}
-
-button.delete {
-    background-color: #ffffff; /* Red background color */
-    border-color: #dc3545; /* Red border color */
-    color: #dc3545; /* White text color */
-}
-
-button.delete:hover {
-    background-color: #dc3545; /* Darker red background color */
-    border-color: #ffffff; /* Darker red border color */
-    color: #ffffff;
+.welcome-icon {
+  font-size: 3rem;
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
 }
 
 .logName {
-    font-family: 'Schoolbell', cursive;
-    font-size: 30px;
+  font-family: 'Schoolbell', cursive;
+  font-size: 2rem;
+  color: white;
+  margin: 0;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  font-weight: 700;
+}
+
+.welcome-subtitle {
+  color: white;
+  font-size: 1rem;
+  margin: 0;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  opacity: 0.9;
+}
+
+/* Favorites Section */
+.favorites-section {
+  margin-top: 2rem;
+}
+
+.favorites-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 1.5rem;
+}
+
+.favorite-card {
+  padding: 1.5rem;
+  background: var(--bg-primary);
+  border-radius: 16px;
+  box-shadow: var(--shadow-lg);
+  transition: all 0.3s ease;
+  border: 1px solid var(--border-color);
+  position: relative;
+  overflow: hidden;
+}
+
+.favorite-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(135deg, var(--danger-color) 0%, #ef4444 100%);
+}
+
+.favorite-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-xl);
+}
+
+.favorite-content {
+  position: relative;
+}
+
+.favorite-item {
+  background: transparent;
+  margin-bottom: 0;
+  padding: 0;
+  border-radius: 0;
+}
+
+.favorite-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.question {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+  line-height: 1.4;
+  flex: 1;
+}
+
+.delete-btn {
+  background: var(--bg-secondary);
+  color: var(--danger-color);
+  border: 1px solid var(--danger-color);
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  flex-shrink: 0;
+}
+
+.delete-btn:hover {
+  background: var(--danger-color);
+  color: white;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.answer-section {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+  border-radius: 12px;
+  border-left: 4px solid var(--danger-color);
+}
+
+.answer-icon {
+  color: var(--danger-color);
+  font-size: 1.25rem;
+  margin-top: 0.25rem;
+  flex-shrink: 0;
+}
+
+.answer {
+  margin: 0;
+  color: var(--text-primary);
+  font-size: 1rem;
+  line-height: 1.6;
+  font-style: italic;
+}
+
+/* Empty State */
+.empty-state {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: var(--text-secondary);
+  background: var(--bg-primary);
+  border-radius: 16px;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border-color);
+}
+
+.empty-state i {
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
+  color: var(--border-color);
+  opacity: 0.5;
+}
+
+.empty-state h3 {
+  color: var(--text-primary);
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.empty-state p {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  margin-bottom: 2rem;
+}
+
+.empty-state .btn {
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .favorites-container {
+    padding: 1rem 0.5rem;
+  }
+  
+  .welcome-card {
+    padding: 1.5rem;
+  }
+  
+  .logName {
+    font-size: 1.5rem;
+  }
+  
+  .favorites-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .favorite-card {
+    padding: 1rem;
+  }
+  
+  .favorite-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .delete-btn {
+    align-self: flex-end;
+  }
+  
+  .empty-state {
+    padding: 2rem 1rem;
+  }
+  
+  .empty-state i {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .favorite-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .delete-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* Animations */
+.fade-in {
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Icon styles */
+.fa-user-circle {
+  color: var(--primary-color);
+}
+
+.fa-heart {
+  color: var(--danger-color);
+}
+
+.fa-trash {
+  color: inherit;
+}
+
+.fa-lightbulb {
+  color: var(--danger-color);
+}
+
+.fa-plus {
+  color: inherit;
 }
